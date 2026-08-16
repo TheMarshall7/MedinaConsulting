@@ -26,7 +26,7 @@ export function HeroMedia() {
       {!playing && (
         <Link
           href="/about#founder"
-          className="group absolute -bottom-[72px] left-0 z-10 flex w-[17rem] flex-col gap-3 rounded-2xl border border-hairline bg-white/90 p-6 shadow-[0_1.5rem_4rem_rgba(19,16,23,0.1)] backdrop-blur-md transition duration-500 hover:-translate-y-1 sm:w-[20rem]"
+          className="group absolute -bottom-[72px] -left-[40px] z-10 flex w-[17rem] flex-col gap-3 rounded-2xl border border-hairline bg-white/90 p-6 shadow-[0_1.5rem_4rem_rgba(19,16,23,0.1)] backdrop-blur-md transition duration-500 hover:-translate-y-1 sm:w-[20rem]"
         >
           <span className="eyebrow text-ink/40">Meet the founder</span>
           <span className="flex items-center justify-between gap-4 text-lg font-medium tracking-tight text-ink">
