@@ -13,11 +13,15 @@ web/.next/
 web/out/
 web/build/
 web/.vercel/
+web/.open-next/
+web/.wrangler/
 
 # Env / secrets
 .env
 .env.*
 !.env.example
+.dev.vars
+web/.dev.vars
 *.pem
 
 # Debug / OS

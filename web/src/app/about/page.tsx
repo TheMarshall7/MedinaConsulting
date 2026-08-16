@@ -67,9 +67,8 @@ export default function AboutPage() {
                 <p className="text-[clamp(2.75rem,5vw,4.25rem)] font-medium leading-none tracking-tight text-white">
                   <StatCounter
                     value={stat.value}
-                    prefix={"prefix" in stat ? stat.prefix : ""}
-                    suffix={"suffix" in stat ? stat.suffix : ""}
-                    decimals={"decimals" in stat ? stat.decimals : 0}
+                    prefix={"prefix" in stat ? String(stat.prefix) : ""}
+                    suffix={"suffix" in stat ? String(stat.suffix) : ""}
                   />
                 </p>
                 <p className="mt-5 max-w-[16rem] text-sm font-light leading-relaxed text-white/55">
