@@ -14,22 +14,21 @@ npm run dev
 
 ## Deploy on Cloudflare
 
-Do **not** use `@cloudflare/next-on-pages` — this app uses Next.js 16 with [`@opennextjs/cloudflare`](https://opennext.js.org/cloudflare).
+See [`CLOUDFLARE.md`](CLOUDFLARE.md) for the exact dashboard settings.
 
-In the Cloudflare project settings:
-
-| Setting | Value |
-| --- | --- |
-| Root directory | `web` |
-| Build command | `npx opennextjs-cloudflare build` |
-| Deploy command | `npx opennextjs-cloudflare deploy` |
-
-Or from your machine:
+**Important:** your Cloudflare build must **not** run `npx @cloudflare/next-on-pages@1`. Change the build command to:
 
 ```bash
-cd web
-npm run deploy
+npm run cf:build
 ```
+
+and the deploy command to:
+
+```bash
+npx wrangler deploy
+```
+
+(or set Root directory to `web` and use `npx opennextjs-cloudflare build` / `deploy`).
 
 ## Legacy files
 
