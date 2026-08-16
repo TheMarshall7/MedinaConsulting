@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medina Grant Writing &amp; Consulting — Grants done right.</title>
+  <meta name="description" content="Your trusted fundraising partners. Grant writing and consulting for nonprofits and charities across Canada.">
+  <link rel="icon" href="Medina.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    details summary::-webkit-details-marker { display: none; }
+    #mobile-nav.open { display: flex; }
+  </style>
+</head>
+
+<body class="min-h-screen overflow-x-hidden bg-[#faf9fa] text-[#1e1b24] antialiased" style="font-family: Poppins, sans-serif; background: radial-gradient(circle at 18% 8%, rgba(255, 133, 178, 0.18), transparent 28rem), radial-gradient(circle at 78% 30%, rgba(240, 200, 180, 0.18), transparent 34rem), linear-gradient(rgb(255, 255, 255) 0%, rgb(250, 249, 250) 100%);">
+  <div id="scroll-progress" class="fixed top-0 left-0 h-1.5 w-full bg-gradient-to-r from-[#FF85B2] to-[#e06691] z-50 origin-left scale-x-0"></div>
+  <canvas id="auraCanvas" aria-hidden="true" class="pointer-events-none fixed inset-0 z-0 h-full w-full opacity-60"></canvas>
+  <div id="webglFallback" aria-hidden="true" class="pointer-events-none fixed inset-0 z-0 hidden opacity-50" style="background: radial-gradient(circle at 30% 22%, rgba(255, 133, 178, 0.18), transparent 24rem), radial-gradient(circle at 72% 48%, rgba(255, 200, 220, 0.12), transparent 22rem);"></div>
+
+  <div class="pointer-events-none fixed inset-0 z-0 opacity-[0.03]" style="background-image: url(&quot;https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/43ba5497-e5f0-415e-ab42-6d68f152b9bd_3840w.png&quot;); background-size: cover; background-position: center center; mix-blend-mode: multiply;"></div>
+  <div class="pointer-events-none fixed inset-0 z-0 opacity-[0.16]" style="background-image: radial-gradient(rgba(0, 0, 0, 0.1) 0.0625rem, transparent 0.0625rem); background-size: 0.25rem 0.25rem;"></div>
+
+  <main class="relative z-10">
+    <header class="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-6 sm:px-10 lg:px-12">
+      <a href="#home" aria-label="Medina home" class="motion-item inline-flex items-center rounded-md bg-black px-3 py-2">
+        <img src="Medina.png" alt="medina" class="h-8 w-auto sm:h-10">
+      </a>
+
+      <nav aria-label="Primary navigation" class="motion-item hidden items-center gap-10 text-sm font-normal text-[#1e1b24]/90 lg:flex">
+        <a class="transition hover:text-[#FF85B2]" href="#home">Home</a>
+        <a class="transition hover:text-[#FF85B2]" href="#services">Services</a>
+        <a class="transition hover:text-[#FF85B2]" href="#about">About</a>
+        <a class="transition hover:text-[#FF85B2]" href="#faq">FAQs</a>
+        <a class="transition hover:text-[#FF85B2]" href="#contact">Contact</a>
+      </nav>
+
+      <div class="motion-item flex items-center gap-3">
+        <a href="#contact" class="hidden rounded-md bg-[#1e1b24] px-6 py-3 text-sm font-medium text-white shadow-[0_1.25rem_4rem_rgba(0,0,0,.08)] transition hover:-translate-y-0.5 hover:bg-[#2c2836] focus:outline-none focus:ring-2 focus:ring-[#1e1b24]/70 sm:inline-flex">
+          Book a Consultation
+        </a>
+        <button type="button" id="menu-toggle" class="inline-flex h-11 w-11 items-center justify-center rounded-md bg-black/5 text-[#1e1b24] lg:hidden" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+          <iconify-icon icon="solar:hamburger-menu-linear" class="text-2xl"></iconify-icon>
+        </button>
+      </div>
+    </header>
+
+    <div id="mobile-nav" class="mx-auto hidden w-full max-w-7xl flex-col gap-4 px-6 pb-6 sm:px-10 lg:hidden">
+      <a class="text-sm transition hover:text-[#FF85B2]" href="#home">Home</a>
+      <a class="text-sm transition hover:text-[#FF85B2]" href="#services">Services</a>
+      <a class="text-sm transition hover:text-[#FF85B2]" href="#about">About</a>
+      <a class="text-sm transition hover:text-[#FF85B2]" href="#faq">FAQs</a>
+      <a class="text-sm transition hover:text-[#FF85B2]" href="#contact">Contact</a>
+      <a href="#contact" class="inline-flex w-fit rounded-md bg-[#1e1b24] px-6 py-3 text-sm font-medium text-white">Book a Consultation</a>
+    </div>
+
+    <section id="home" class="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 pb-20 pt-12 sm:px-10 sm:pt-20 lg:grid-cols-[0.9fr_1.1fr] lg:px-12 lg:pb-32 lg:pt-16">
+      <div class="max-w-xl">
+        <p class="motion-item text-xs font-medium uppercase tracking-[0.28em] text-[#FF85B2]">Grants done right.</p>
+        <h1 class="mt-5 text-5xl font-medium leading-[1.1] tracking-tight text-[#1e1b24] sm:text-6xl lg:text-[4.4rem]" aria-label="Your trusted fundraising partners">
+          <span class="inline-block overflow-hidden align-bottom">
+            <span class="word inline-block">Your</span>
+          </span>
+          <span class="inline-block overflow-hidden align-bottom">
+            <span class="word inline-block">trusted</span>
+          </span>
+          <br>
+          <span class="inline-block overflow-hidden align-bottom">
+            <span class="word inline-block">fundraising</span>
+          </span>
+          <div class="inline-grid overflow-hidden align-bottom h-[1.15em] relative top-1">
+            <span class="word-rotator inline-block col-start-1 row-start-1 text-[#FF85B2] pb-2">partners.</span>
+            <span class="word-rotator inline-block col-start-1 row-start-1 text-[#FF85B2] opacity-0 translate-y-full pb-2">grants.</span>
+            <span class="word-rotator inline-block col-start-1 row-start-1 text-[#FF85B2] opacity-0 translate-y-full pb-2">impact.</span>
+          </div>
+        </h1>
+        <p class="motion-item mt-8 max-w-lg text-sm font-light leading-7 text-[#1e1b24]/60">
+          Grant writing and consulting services for nonprofits and businesses across Canada. We help you secure sustainable funding, strengthen funder relationships, and build lasting impact.
+        </p>
+        <div class="motion-item mt-10 flex flex-wrap items-center gap-7">
+          <a href="#contact" class="rounded-md bg-gradient-to-r from-[#FF85B2] to-[#e06691] px-10 py-4 text-sm font-medium text-white shadow-[0_1rem_2.5rem_rgba(255,133,178,.25)] transition hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#FF85B2]/60">
+            Book a Consultation
+          </a>
+          <a href="#services" class="text-sm font-medium text-[#1e1b24]/90 transition hover:text-[#FF85B2]">
+            See services
+          </a>
+        </div>
+      </div>
+
+      <div class="motion-hero relative min-h-[29rem] lg:min-h-[34rem]">
+        <div class="absolute right-0 top-0 h-[24rem] w-full overflow-hidden bg-[#f7ebeb] shadow-[0_2rem_6rem_rgba(0,0,0,.08)] sm:h-[28rem] lg:w-[39rem]" style="clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%, 0 16%);">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/2UBnt_6V-LE?rel=0&amp;modestbranding=1"
+            title="Meet the founder"
+            class="h-full w-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+          <div class="pointer-events-none absolute inset-0" style="background: radial-gradient(circle at 12% 72%, rgba(255, 133, 178, 0.18), transparent 18rem), linear-gradient(90deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.08));"></div>
+        </div>
+
+        <a href="#founder" class="gradient-panel absolute bottom-8 right-0 flex h-36 w-[85%] items-center justify-end gap-5 border border-black/5 pr-12 shadow-[0_2rem_5rem_rgba(0,0,0,.06)] sm:w-[27rem] lg:bottom-20 bg-white cursor-pointer transition-transform hover:-translate-y-1" style="background: linear-gradient(100deg, rgba(255, 255, 255, 0.95), rgba(250, 245, 247, 0.98), rgba(255, 255, 255, 0.95));">
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-white/0">
+            <iconify-icon icon="solar:play-linear" class="text-2xl text-[#FF85B2]" style="stroke-width: 1.5;"></iconify-icon>
+          </span>
+          <span class="text-sm font-normal text-[#1e1b24]">Meet the Founder</span>
+        </a>
+
+        <div class="absolute bottom-0 left-[38%] hidden h-32 w-32 animate-[spin_13s_linear_infinite] items-center justify-center rounded-full sm:flex lg:bottom-10">
+          <div class="absolute inset-0 rounded-full border border-black/10"></div>
+          <div class="relative flex h-16 w-16 items-center justify-center rounded-full bg-black/5 backdrop-blur-md">
+            <iconify-icon icon="solar:arrow-down-linear" class="text-4xl text-[#1e1b24]" style="stroke-width: 1.5;"></iconify-icon>
+          </div>
+          <span class="absolute text-xs font-medium uppercase tracking-[0.4rem] text-[#1e1b24]" style="transform: translateY(-3.3rem);">Discover</span>
+          <span class="absolute text-xs font-medium uppercase tracking-[0.4rem] text-[#1e1b24]" style="transform: translateY(3.3rem) rotate(180deg);">Explore</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-20 px-6 py-16 sm:px-10 lg:grid-cols-[1.2fr_0.8fr] lg:px-12 lg:py-20">
+      <div class="relative min-h-[34rem]">
+        <article class="reveal-card absolute left-0 top-0 w-[18rem] overflow-hidden shadow-[0_1.5rem_5rem_rgba(0,0,0,.28)] sm:w-[19rem]" style="clip-path: polygon(0px 0px, 86% 0px, 100% 12%, 100% 100%, 0px 100%); background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.01)); padding: 0.0625rem;">
+          <div class="h-full w-full overflow-hidden bg-white">
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" alt="Community partners in conversation" class="h-72 w-full object-cover" style="filter: saturate(1.05); object-position: center 20%;">
+            <div class="p-5" style="background: linear-gradient(105deg, rgba(255, 255, 255, 0.96), rgba(250, 245, 247, 0.9), rgba(255, 255, 255, 0.9));">
+              <iconify-icon icon="solar:pen-new-square-linear" class="text-2xl text-[#FF85B2]" style="stroke-width: 1.5;"></iconify-icon>
+              <h3 class="mt-5 text-lg font-medium tracking-tight text-[#1e1b24]">Grant Writing &amp; Strategy</h3>
+              <p class="mt-3 text-sm font-light leading-6 text-[#1e1b24]/60">
+                Write and refine proposals with a funder’s lens so your organization’s voice stays clear and authentic.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="reveal-card absolute left-[42%] top-36 w-[18rem] overflow-hidden shadow-[0_1.5rem_5rem_rgba(0,0,0,.28)] sm:w-[19rem]" style="clip-path: polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%); background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.01)); padding: 0.0625rem;">
+          <div class="h-full w-full overflow-hidden bg-white">
+            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" alt="Team reviewing a funding strategy" class="h-60 w-full object-cover" style="filter: saturate(1.05); object-position: center 30%;">
+            <div class="p-5" style="background: linear-gradient(105deg, rgba(255, 255, 255, 0.96), rgba(250, 245, 247, 0.9), rgba(255, 255, 255, 0.9));">
+              <iconify-icon icon="solar:chat-round-check-linear" class="text-2xl text-[#FF85B2]" style="stroke-width: 1.5;"></iconify-icon>
+              <h3 class="mt-5 text-lg font-medium tracking-tight text-[#1e1b24]">Proposal Review &amp; Coaching</h3>
+              <p class="mt-3 text-sm font-light leading-6 text-[#1e1b24]/60">
+                We coach organizations through funder dynamics and simulate site visits so you are ready for the real conversation.
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="max-w-md lg:pl-8">
+        <h2 class="reveal-title text-5xl font-medium leading-tight tracking-tight sm:text-6xl" aria-label="Elevating funder storytelling">
+          <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">Elevating</span></span>
+          <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">funder</span></span>
+          <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">storytelling</span></span>
+        </h2>
+        <p class="mt-6 text-sm font-light leading-6 text-[#1e1b24]/60">
+          Medina Grant Writing &amp; Consulting is a boutique agency helping nonprofits and charities across Canada secure sustainable funding, strengthen relationships with funders, and build lasting impact.
+        </p>
+        <p class="mt-4 text-sm font-light leading-6 text-[#1e1b24]/60">
+          Our focus goes beyond writing grants — we review proposals, coach through funder dynamics, and prepare you for the realities of the funding landscape. We empower you to own your voice, and align it with what funders need to see and feel to say “yes.”
+        </p>
+        <a href="#services" class="mt-9 inline-flex rounded-md bg-[#1e1b24] px-10 py-4 text-sm font-medium text-white shadow-[0_1rem_2.5rem_rgba(0,0,0,.15)] transition hover:-translate-y-0.5 hover:bg-black">
+          View services
+        </a>
+      </div>
+    </section>
+
+    <section class="relative mx-auto my-16 w-full max-w-7xl px-0 sm:px-10 lg:px-12">
+      <div class="reveal-card grid min-h-72 grid-cols-1 items-center gap-8 bg-[#f5eef1] px-8 py-12 shadow-[0_2rem_6rem_rgba(0,0,0,.05)] sm:px-16 lg:grid-cols-3" style="clip-path: polygon(0 0, 94% 0, 100% 18%, 100% 100%, 0 100%);">
+        <div class="text-center">
+          <div class="relative mx-auto h-36 w-52">
+            <div class="absolute left-16 top-0 h-36 w-36 rounded-full bg-[#FF85B2]"></div>
+            <div class="absolute left-0 top-0 flex h-36 w-36 items-center justify-center rounded-full bg-white text-3xl font-normal tracking-tight text-[#12111f]">1,500+</div>
+          </div>
+          <p class="mt-4 text-sm font-light text-[#1e1b24]/70">Grant opportunities in our database</p>
+        </div>
+        <div class="text-center">
+          <p class="text-5xl font-medium tracking-tight text-[#1e1b24]">~60%</p>
+          <p class="mt-3 text-sm font-light text-[#1e1b24]/70">Canada-based opportunities, updated regularly</p>
+        </div>
+        <div class="text-center">
+          <p class="text-5xl font-medium tracking-tight text-[#1e1b24]">5.0</p>
+          <p class="mt-3 text-sm font-light text-[#1e1b24]/70">Google rating from 9 verified reviews</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="relative mx-auto w-full max-w-7xl px-6 py-24 sm:px-10 lg:px-12">
+      <div class="mb-16 flex items-end justify-between gap-8">
+        <h2 class="reveal-title max-w-2xl text-5xl font-medium leading-tight tracking-tight sm:text-6xl" aria-label="What we help you do">
+          <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">What</span></span>
+          <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">we</span></span>
+          <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">help</span></span>
+          <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">you</span></span>
+          <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">do</span></span>
+        </h2>
+        <a href="#contact" class="hidden rounded-md bg-gradient-to-r from-[#FF85B2] to-[#e06691] px-10 py-4 text-sm font-medium text-white shadow-[0_1rem_2.5rem_rgba(255,133,178,.18)] transition hover:-translate-y-0.5 sm:inline-flex">
+          Book a Consultation
+        </a>
+      </div>
+
+      <div class="relative mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-2">
+        <article class="product-card overflow-hidden shadow-[0_1.5rem_5rem_rgba(0,0,0,.28)]" style="clip-path: polygon(0px 0px, 86% 0px, 100% 12%, 100% 100%, 0px 100%); background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.01)); padding: 0.0625rem;">
+          <div class="bg-white">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57d769768?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" alt="Writing a funding proposal" class="h-72 w-full object-cover" style="object-position: center 20%;">
+            <div class="p-6" style="background: linear-gradient(105deg, rgba(255, 255, 255, 0.9), rgba(250, 245, 247, 0.95), rgba(255, 255, 255, 0.9));">
+              <h3 class="text-xl font-normal tracking-tight text-[#1e1b24]">Grant Writing &amp; Strategy</h3>
+              <p class="mt-3 text-sm font-light leading-6 text-[#1e1b24]/60">Write and refine proposals with a funder’s lens from the first draft.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card mt-0 overflow-hidden shadow-[0_1.5rem_5rem_rgba(0,0,0,.28)] md:mt-[-4rem]" style="clip-path: polygon(0px 0px, 86% 0px, 100% 12%, 100% 100%, 0px 100%); background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.01)); padding: 0.0625rem;">
+          <div class="bg-white">
+            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" alt="Editing a proposal together" class="h-72 w-full object-cover" style="object-position: center 18%;">
+            <div class="p-6" style="background: linear-gradient(105deg, rgba(255, 255, 255, 0.9), rgba(250, 245, 247, 0.95), rgba(255, 255, 255, 0.9));">
+              <h3 class="text-xl font-normal tracking-tight text-[#1e1b24]">Funding Proposal Review &amp; Editing</h3>
+              <p class="mt-3 text-sm font-light leading-6 text-[#1e1b24]/60">Strengthen applications before they reach the review table.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card overflow-hidden shadow-[0_1.5rem_5rem_rgba(0,0,0,.28)]" style="clip-path: polygon(0px 0px, 86% 0px, 100% 12%, 100% 100%, 0px 100%); background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.01)); padding: 0.0625rem;">
+          <div class="bg-white">
+            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" alt="Designing a community program" class="h-72 w-full object-cover" style="object-position: center 18%;">
+            <div class="p-6" style="background: linear-gradient(105deg, rgba(255, 255, 255, 0.9), rgba(250, 245, 247, 0.95), rgba(255, 255, 255, 0.9));">
+              <h3 class="text-xl font-normal tracking-tight text-[#1e1b24]">Program Design &amp; Theory of Change</h3>
+              <p class="mt-3 text-sm font-light leading-6 text-[#1e1b24]/60">Design programs with funder-conscious strategy from the start.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card mt-0 overflow-hidden shadow-[0_1.5rem_5rem_rgba(0,0,0,.28)] md:mt-[-3rem]" style="clip-path: polygon(0px 0px, 86% 0px, 100% 12%, 100% 100%, 0px 100%); background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.01)); padding: 0.0625rem;">
+          <div class="bg-white">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" alt="Organizational readiness workshop" class="h-72 w-full object-cover" style="object-position: center 20%;">
+            <div class="p-6" style="background: linear-gradient(105deg, rgba(255, 255, 255, 0.9), rgba(250, 245, 247, 0.95), rgba(255, 255, 255, 0.9));">
+              <h3 class="text-xl font-normal tracking-tight text-[#1e1b24]">Organizational Readiness Audits</h3>
+              <p class="mt-3 text-sm font-light leading-6 text-[#1e1b24]/60">Strengthen internal systems and readiness before you apply.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="mx-auto mt-16 grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-2">
+        <div class="reveal-card border border-black/5 bg-white p-6">
+          <h3 class="text-base font-medium tracking-tight">Culturally Competent Storytelling</h3>
+          <p class="mt-2 text-sm font-light leading-6 text-[#1e1b24]/60">Culturally grounded insight so your story lands with the people who fund it.</p>
+        </div>
+        <div class="reveal-card border border-black/5 bg-white p-6">
+          <h3 class="text-base font-medium tracking-tight">Strategic Partnerships</h3>
+          <p class="mt-2 text-sm font-light leading-6 text-[#1e1b24]/60">Build stronger relationships with current and prospective funders.</p>
+        </div>
+        <div class="reveal-card border border-black/5 bg-white p-6">
+          <h3 class="text-base font-medium tracking-tight">Nonprofit &amp; Charitable Sector Expertise</h3>
+          <p class="mt-2 text-sm font-light leading-6 text-[#1e1b24]/60">Deep sector experience for registered charities and community organizations.</p>
+        </div>
+        <div class="reveal-card border border-black/5 bg-white p-6">
+          <h3 class="text-base font-medium tracking-tight">Evaluation &amp; Impact Reporting</h3>
+          <p class="mt-2 text-sm font-light leading-6 text-[#1e1b24]/60">Show funders the outcomes they need to see — clearly and credibly.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-6 py-20 sm:px-10 lg:px-12">
+      <h2 class="reveal-title text-center text-4xl font-medium tracking-tight text-[#1e1b24]" aria-label="How we work">
+        <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">How</span></span>
+        <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">we</span></span>
+        <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">work</span></span>
+      </h2>
+      <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
+        <article class="reveal-card bg-white border border-black/5 p-8 shadow-[0_1.5rem_4rem_rgba(0,0,0,.04)]">
+          <p class="text-4xl font-medium tracking-tight text-[#FF85B2]">01</p>
+          <h3 class="mt-8 text-xl font-normal tracking-tight text-[#1e1b24]">Consult &amp; assess readiness</h3>
+          <p class="mt-5 text-sm font-light leading-7 text-[#1e1b24]/60">
+            Clients come to us with different levels of readiness. We don’t expect everything to be in place — we meet you where you are and strengthen internal systems first.
+          </p>
+        </article>
+        <article class="reveal-card bg-white border border-black/5 p-8 shadow-[0_1.5rem_4rem_rgba(0,0,0,.04)]">
+          <p class="text-4xl font-medium tracking-tight text-[#FF85B2]">02</p>
+          <h3 class="mt-8 text-xl font-normal tracking-tight text-[#1e1b24]">Write with a funder’s lens</h3>
+          <p class="mt-5 text-sm font-light leading-7 text-[#1e1b24]/60">
+            We guide you through the process, keep you involved at every stage, and make sure your organization’s voice is clear and authentic in every application.
+          </p>
+        </article>
+        <article class="reveal-card bg-white border border-black/5 p-8 shadow-[0_1.5rem_4rem_rgba(0,0,0,.04)]">
+          <p class="text-4xl font-medium tracking-tight text-[#FF85B2]">03</p>
+          <h3 class="mt-8 text-xl font-normal tracking-tight text-[#1e1b24]">Coach through funder dynamics</h3>
+          <p class="mt-5 text-sm font-light leading-7 text-[#1e1b24]/60">
+            We coach organizations through funder conversations and simulate site visits so you are prepared for the realities of the funding landscape.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-14 px-6 py-20 sm:px-10 lg:grid-cols-[28rem_1fr] lg:px-12" id="reviews">
+      <div class="relative mx-auto w-full max-w-md">
+        <div class="absolute -left-14 -top-14 hidden h-28 w-28 rounded-full border-2 border-white lg:block"></div>
+        <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" alt="Community gathering" class="h-72 w-full object-cover shadow-[0_1.5rem_5rem_rgba(0,0,0,.28)]">
+        <div class="absolute bottom-0 right-0 grid grid-cols-2">
+          <button type="button" aria-label="Previous review" class="flex h-16 w-20 items-center justify-center bg-white/20 text-white backdrop-blur-md" id="testi-prev">
+            <iconify-icon icon="solar:alt-arrow-left-linear" class="text-3xl" style="stroke-width: 1.5;"></iconify-icon>
+          </button>
+          <button type="button" aria-label="Next review" class="flex h-16 w-20 items-center justify-center bg-white text-[#FF85B2]" id="testi-next">
+            <iconify-icon icon="solar:alt-arrow-right-linear" class="text-3xl" style="stroke-width: 1.5;"></iconify-icon>
+          </button>
+        </div>
+      </div>
+      <div>
+        <div class="flex gap-5 text-[#ffcc4f]">
+          <iconify-icon icon="solar:star-bold" class="text-xl"></iconify-icon>
+          <iconify-icon icon="solar:star-bold" class="text-xl"></iconify-icon>
+          <iconify-icon icon="solar:star-bold" class="text-xl"></iconify-icon>
+          <iconify-icon icon="solar:star-bold" class="text-xl"></iconify-icon>
+          <iconify-icon icon="solar:star-bold" class="text-xl"></iconify-icon>
+        </div>
+        <blockquote class="mt-8 max-w-2xl text-lg font-light leading-8 text-[#1e1b24] transition-opacity duration-300" id="testi-quote">
+          “Medina Grant Writing and Consulting is an outstanding service. Professional, reliable, and truly dedicated to excellence.”
+        </blockquote>
+        <div class="mt-6 flex items-center gap-5">
+          <span class="h-0.5 w-20 bg-[#1e1b24]"></span>
+          <cite class="text-sm font-normal not-italic text-[#1e1b24] transition-opacity duration-300" id="testi-author">Aidan Lee · Google</cite>
+        </div>
+        <div class="mt-12 flex flex-wrap gap-4" id="testi-indicators">
+          <span class="h-1 w-12 bg-[#1e1b24] transition-colors duration-300 sm:w-16"></span>
+          <span class="h-1 w-12 bg-black/10 transition-colors duration-300 sm:w-16"></span>
+          <span class="h-1 w-12 bg-black/10 transition-colors duration-300 sm:w-16"></span>
+          <span class="h-1 w-12 bg-black/10 transition-colors duration-300 sm:w-16"></span>
+          <span class="h-1 w-12 bg-black/10 transition-colors duration-300 sm:w-16"></span>
+          <span class="h-1 w-12 bg-black/10 transition-colors duration-300 sm:w-16"></span>
+          <span class="h-1 w-12 bg-black/10 transition-colors duration-300 sm:w-16"></span>
+          <span class="h-1 w-12 bg-black/10 transition-colors duration-300 sm:w-16"></span>
+        </div>
+        <p class="mt-6 text-xs font-light text-[#1e1b24]/50">Google rating 5.0 of 5, based on 9 reviews</p>
+      </div>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-6 py-20 sm:px-10 lg:px-12" id="founder">
+      <div class="mb-10 grid grid-cols-1 items-start gap-8 md:grid-cols-[18rem_1fr_auto]">
+        <h2 class="reveal-title text-4xl font-medium tracking-tight text-[#1e1b24]" aria-label="Meet the founder">
+          <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">Meet</span></span>
+          <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">the</span></span>
+          <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">founder</span></span>
+        </h2>
+        <p class="max-w-md text-sm font-light leading-6 text-[#1e1b24]/60">
+          Clients describe Musa as knowledgeable, up to date, and genuinely invested in helping organizations grow — coaching them through the work rather than doing it for them.
+        </p>
+        <a href="#contact" class="rounded-md bg-gradient-to-r from-[#FF85B2] to-[#e06691] px-10 py-4 text-center text-sm font-medium text-white shadow-[0_1rem_2.5rem_rgba(255,133,178,.18)] transition hover:-translate-y-0.5">
+          Book a Consultation
+        </a>
+      </div>
+
+      <div class="overflow-hidden bg-white shadow-[0_1.5rem_5rem_rgba(0,0,0,.08)]" style="clip-path: polygon(0 0, 94% 0, 100% 8%, 100% 100%, 0 100%);">
+        <div class="aspect-video w-full bg-black">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/2UBnt_6V-LE?rel=0&amp;modestbranding=1"
+            title="Meet Musa, founder of Medina Grant Writing &amp; Consulting"
+            class="h-full w-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-14 px-6 py-24 sm:px-10 lg:grid-cols-[20rem_1fr] lg:px-12">
+      <div>
+        <h2 class="reveal-title text-4xl font-medium leading-tight tracking-tight text-[#1e1b24]" aria-label="Frequently asked questions">
+          <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">Frequently</span></span>
+          <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">asked</span></span>
+          <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">questions</span></span>
+        </h2>
+        <a href="#contact" class="mt-10 inline-flex rounded-md bg-gradient-to-r from-[#FF85B2] to-[#e06691] px-10 py-4 text-sm font-medium text-white shadow-[0_1rem_2.5rem_rgba(255,133,178,.18)] transition hover:-translate-y-0.5">
+          Ask more
+        </a>
+      </div>
+      <div id="faq" class="space-y-0">
+        <details class="group border-b border-black/10 py-7" open>
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-8 text-xl font-normal tracking-tight text-[#1e1b24]">
+            Why hire a grant writer?
+            <iconify-icon icon="solar:alt-arrow-down-linear" class="text-2xl transition-transform duration-300 group-open:-rotate-180" style="stroke-width: 1.5;"></iconify-icon>
+          </summary>
+          <p class="mt-5 max-w-3xl text-sm font-light leading-7 text-[#1e1b24]/60">
+            Our clients hire us to save time, save money, and build capacity.
+          </p>
+        </details>
+        <details class="group border-b border-black/10 py-7">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-8 text-xl font-normal tracking-tight text-[#1e1b24]">
+            Do you take a percentage if we win the grant?
+            <iconify-icon icon="solar:alt-arrow-down-linear" class="text-2xl transition-transform duration-300 group-open:-rotate-180" style="stroke-width: 1.5;"></iconify-icon>
+          </summary>
+          <p class="mt-5 max-w-3xl text-sm font-light leading-7 text-[#1e1b24]/60">
+            No. All funds awarded to our clients belong to our clients.
+          </p>
+        </details>
+        <details class="group border-b border-black/10 py-7">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-8 text-xl font-normal tracking-tight text-[#1e1b24]">
+            What are the chances of us winning a grant?
+            <iconify-icon icon="solar:alt-arrow-down-linear" class="text-2xl transition-transform duration-300 group-open:-rotate-180" style="stroke-width: 1.5;"></iconify-icon>
+          </summary>
+          <p class="mt-5 max-w-3xl text-sm font-light leading-7 text-[#1e1b24]/60">
+            When it comes to grants, it depends. Decisions are made based on the amount of funds available, how competitive the applicant pool is, your project’s alignment with funding priorities, and the strength of the application. It’s impossible to guarantee funding, but a well-aligned and well-prepared application will significantly improve your odds.
+          </p>
+        </details>
+        <details class="group border-b border-black/10 py-7">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-8 text-xl font-normal tracking-tight text-[#1e1b24]">
+            How many grants do you have visibility on?
+            <iconify-icon icon="solar:alt-arrow-down-linear" class="text-2xl transition-transform duration-300 group-open:-rotate-180" style="stroke-width: 1.5;"></iconify-icon>
+          </summary>
+          <p class="mt-5 max-w-3xl text-sm font-light leading-7 text-[#1e1b24]/60">
+            Our current database holds over 1,500 grant opportunities for registered charities and non-profits, with nearly 60% based in Canada. We also maintain an internal database that is updated regularly to ensure no relevant opportunity is overlooked for our clients.
+          </p>
+        </details>
+        <details class="group border-b border-black/10 py-7">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-8 text-xl font-normal tracking-tight text-[#1e1b24]">
+            What is your approach to working on projects?
+            <iconify-icon icon="solar:alt-arrow-down-linear" class="text-2xl transition-transform duration-300 group-open:-rotate-180" style="stroke-width: 1.5;"></iconify-icon>
+          </summary>
+          <p class="mt-5 max-w-3xl text-sm font-light leading-7 text-[#1e1b24]/60">
+            Our approach is collaborative. Clients come to us with different levels of readiness, and we adapt to meet those needs. We don’t expect everything to be in place. We guide our clients through the process, keep them involved at every stage, and ensure their organization’s voice is clear and authentic in every application.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <section id="contact" class="mx-auto w-full max-w-7xl px-6 py-20 sm:px-10 lg:px-12">
+      <div class="grid grid-cols-1 gap-14 lg:grid-cols-[1fr_1.1fr]">
+        <div>
+          <h2 class="reveal-title text-4xl font-medium leading-tight tracking-tight text-[#1e1b24]" aria-label="Book a consultation">
+            <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">Book</span></span>
+            <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">a</span></span>
+            <span class="inline-block overflow-hidden align-bottom"><span class="word inline-block">consultation</span></span>
+          </h2>
+          <p class="mt-6 max-w-md text-sm font-light leading-7 text-[#1e1b24]/60">
+            Tell us about your organization. We’ll follow up on WhatsApp to find a time that works.
+          </p>
+          <div class="mt-8 space-y-4 text-sm">
+            <a href="tel:+18359458992" class="flex items-center gap-3 transition hover:text-[#FF85B2]">
+              <iconify-icon icon="solar:phone-linear" class="text-xl"></iconify-icon>
+              (835) 945-8992
+            </a>
+            <a href="https://api.whatsapp.com/message/4QXNTYEHYJAAG1?autoload=1&amp;app_absent=0" class="flex items-center gap-3 transition hover:text-[#FF85B2]" target="_blank" rel="noopener noreferrer">
+              <iconify-icon icon="solar:chat-round-linear" class="text-xl"></iconify-icon>
+              WhatsApp
+            </a>
+            <a href="https://www.linkedin.com/company/medinaconsultingca" class="flex items-center gap-3 transition hover:text-[#FF85B2]" target="_blank" rel="noopener noreferrer">
+              <iconify-icon icon="solar:link-linear" class="text-xl"></iconify-icon>
+              LinkedIn
+            </a>
+            <a href="https://www.youtube.com/@medinaconsultingCA" class="flex items-center gap-3 transition hover:text-[#FF85B2]" target="_blank" rel="noopener noreferrer">
+              <iconify-icon icon="solar:play-linear" class="text-xl"></iconify-icon>
+              YouTube
+            </a>
+          </div>
+        </div>
+
+        <form id="contact-form" class="space-y-4 border border-black/5 bg-white/80 p-8 shadow-[0_1.5rem_4rem_rgba(0,0,0,.04)]">
+          <label class="block text-sm">
+            <span class="font-medium">Name *</span>
+            <input type="text" name="name" required maxlength="100" placeholder="Name" class="mt-2 w-full rounded-md border border-black/10 bg-white/60 px-4 py-3 text-sm outline-none transition focus:border-[#FF85B2] focus:ring-1 focus:ring-[#FF85B2]">
+          </label>
+          <label class="block text-sm">
+            <span class="font-medium">Phone number</span>
+            <input type="tel" name="phone" maxlength="40" placeholder="Phone number" class="mt-2 w-full rounded-md border border-black/10 bg-white/60 px-4 py-3 text-sm outline-none transition focus:border-[#FF85B2] focus:ring-1 focus:ring-[#FF85B2]">
+          </label>
+          <label class="block text-sm">
+            <span class="font-medium">Email *</span>
+            <input type="email" name="email" required placeholder="Email" class="mt-2 w-full rounded-md border border-black/10 bg-white/60 px-4 py-3 text-sm outline-none transition focus:border-[#FF85B2] focus:ring-1 focus:ring-[#FF85B2]">
+          </label>
+          <label class="block text-sm">
+            <span class="font-medium">Message *</span>
+            <textarea name="message" required rows="5" placeholder="How can we help?" class="mt-2 w-full rounded-md border border-black/10 bg-white/60 px-4 py-3 text-sm outline-none transition focus:border-[#FF85B2] focus:ring-1 focus:ring-[#FF85B2]"></textarea>
+          </label>
+          <button type="submit" class="w-full rounded-md bg-gradient-to-r from-[#FF85B2] to-[#e06691] px-10 py-4 text-sm font-medium text-white shadow-[0_1rem_2.5rem_rgba(255,133,178,.18)] transition hover:-translate-y-0.5">
+            Send on WhatsApp
+          </button>
+          <p id="contact-msg" class="text-xs font-medium text-[#1e1b24] opacity-0 transition-opacity">Opening WhatsApp with your message…</p>
+        </form>
+      </div>
+    </section>
+
+    <footer class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 px-6 pb-14 pt-10 sm:px-10 md:grid-cols-[1.4fr_1fr_1fr] lg:px-12">
+      <div>
+        <a href="#home" aria-label="Medina home" class="inline-flex rounded-md bg-black px-3 py-3">
+          <img src="Medina Logo.png" alt="Medina Grant Writing &amp; Consulting" class="h-14 w-auto sm:h-16">
+        </a>
+        <p class="mt-6 max-w-xs text-sm font-light leading-6 text-[#1e1b24]/60">Your trusted fundraising partners. Grants done right.</p>
+        <div class="mt-8 flex gap-4">
+          <a aria-label="WhatsApp" href="https://api.whatsapp.com/message/4QXNTYEHYJAAG1?autoload=1&amp;app_absent=0" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-md bg-black/5 text-xl transition hover:bg-black/10 text-[#1e1b24]">
+            <iconify-icon icon="solar:chat-round-linear" style="stroke-width: 1.5;"></iconify-icon>
+          </a>
+          <a aria-label="LinkedIn" href="https://www.linkedin.com/company/medinaconsultingca" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-md bg-black/5 text-xl transition hover:bg-black/10 text-[#1e1b24]">
+            <iconify-icon icon="solar:link-linear" style="stroke-width: 1.5;"></iconify-icon>
+          </a>
+          <a aria-label="YouTube" href="https://www.youtube.com/@medinaconsultingCA" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-md bg-black/5 text-xl transition hover:bg-black/10 text-[#1e1b24]">
+            <iconify-icon icon="solar:play-linear" style="stroke-width: 1.5;"></iconify-icon>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-lg font-medium tracking-tight text-[#1e1b24]">Explore</h3>
+        <ul class="mt-8 space-y-6 text-sm font-light text-[#1e1b24]/80">
+          <li><a href="#services" class="hover:text-[#FF85B2]">Services</a></li>
+          <li><a href="#about" class="hover:text-[#FF85B2]">About</a></li>
+          <li><a href="#faq" class="hover:text-[#FF85B2]">FAQs</a></li>
+          <li><a href="#contact" class="hover:text-[#FF85B2]">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-medium tracking-tight text-[#1e1b24]">Contact</h3>
+        <ul class="mt-8 space-y-6 text-sm font-light text-[#1e1b24]/80">
+          <li><a href="tel:+18359458992" class="hover:text-[#FF85B2]">(835) 945-8992</a></li>
+          <li><a href="https://api.whatsapp.com/message/4QXNTYEHYJAAG1?autoload=1&amp;app_absent=0" class="hover:text-[#FF85B2]" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li><a href="https://medinaconsulting.ca/" class="hover:text-[#FF85B2]">medinaconsulting.ca</a></li>
+        </ul>
+      </div>
+      <p class="md:col-span-3 text-center text-sm font-light text-[#1e1b24]/80">
+        © 2026 Medina Grant Writing &amp; Consulting.
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function wrapWords(selector) {
+      document.querySelectorAll(selector).forEach((el) => {
+        if (el.querySelector('.word-rotator') || el.querySelector('.word')) return;
+        const words = el.textContent.trim().split(/\s+/);
+        el.setAttribute('aria-label', el.textContent.trim());
+        el.innerHTML = words.map(word => '<span aria-hidden="true" class="inline-block overflow-hidden align-bottom"><span class="word inline-block">' + word + '</span></span>').join(' ');
+      });
+    }
+
+    if (!reducedMotion && window.gsap) {
+      gsap.registerPlugin(ScrollTrigger);
+      wrapWords('.reveal-title');
+
+      const intro = gsap.timeline({ defaults: { ease: 'power4.out' } });
+      intro
+        .from('.motion-item', { y: 40, opacity: 0, filter: 'blur(10px)', duration: 1.2, stagger: 0.1 })
+        .from('#home .word', { yPercent: 120, opacity: 0, rotationZ: 3, filter: 'blur(8px)', duration: 1.2, stagger: 0.05 }, 0.2)
+        .from('.motion-hero', { x: 100, opacity: 0, scale: 0.9, filter: 'blur(15px)', duration: 1.5 }, 0.4)
+        .from('.gradient-panel', { x: 100, opacity: 0, filter: 'blur(10px)', duration: 1.2 }, 0.8);
+
+      const rotators = document.querySelectorAll('.word-rotator');
+      if (rotators.length) {
+        let currentIndex = 0;
+        setInterval(() => {
+          const nextIndex = (currentIndex + 1) % rotators.length;
+          gsap.to(rotators[currentIndex], { yPercent: -100, opacity: 0, filter: 'blur(5px)', duration: 0.8, ease: 'power3.inOut' });
+          gsap.fromTo(rotators[nextIndex],
+            { yPercent: 100, opacity: 0, filter: 'blur(5px)' },
+            { yPercent: 0, opacity: 1, filter: 'blur(0px)', duration: 0.8, ease: 'power3.inOut' }
+          );
+          currentIndex = nextIndex;
+        }, 2500);
+      }
+
+      document.querySelectorAll('.reveal-title').forEach((title) => {
+        gsap.from(title.querySelectorAll('.word'), {
+          scrollTrigger: { trigger: title, start: 'top 85%' },
+          yPercent: 120,
+          opacity: 0,
+          rotationZ: 2,
+          filter: 'blur(8px)',
+          duration: 1,
+          stagger: 0.05,
+          ease: 'power3.out'
+        });
+      });
+
+      gsap.utils.toArray('.reveal-card, .product-card').forEach((card, index) => {
+        gsap.from(card, {
+          scrollTrigger: { trigger: card, start: 'top 85%' },
+          y: 80,
+          opacity: 0,
+          scale: 0.95,
+          filter: 'blur(12px)',
+          duration: 1.2,
+          delay: (index % 3) * 0.1,
+          ease: 'power3.out'
+        });
+      });
+
+      const featuresSection = document.getElementById('about');
+      if (featuresSection && window.innerWidth >= 1024) {
+        ScrollTrigger.create({
+          trigger: featuresSection,
+          start: 'top top',
+          end: '+=80%',
+          pin: true,
+          pinSpacing: true,
+        });
+
+        gsap.to(featuresSection.querySelectorAll('.reveal-card'), {
+          scrollTrigger: {
+            trigger: featuresSection,
+            start: 'top top',
+            end: '+=80%',
+            scrub: 1
+          },
+          yPercent: -30,
+          stagger: 0.1,
+          ease: 'none'
+        });
+      }
+
+      gsap.to('.product-card', {
+        scrollTrigger: { trigger: '#services', start: 'top bottom', end: 'bottom top', scrub: 1 },
+        y: (i) => i % 2 ? 60 : -40,
+        ease: 'none'
+      });
+    }
+
+    (function initAuraWebGL() {
+      const canvas = document.getElementById('auraCanvas');
+      const fallback = document.getElementById('webglFallback');
+      if (reducedMotion) {
+        canvas.style.display = 'none';
+        fallback.classList.remove('hidden');
+        return;
+      }
+
+      const gl = canvas.getContext('webgl', { alpha: true, antialias: false, powerPreference: 'high-performance' });
+      if (!gl) {
+        canvas.style.display = 'none';
+        fallback.classList.remove('hidden');
+        return;
+      }
+
+      const vertexSource = `
+        attribute vec2 position;
+        varying vec2 vUv;
+        void main() {
+          vUv = position * 0.5 + 0.5;
+          gl_Position = vec4(position, 0.0, 1.0);
+        }
+      `;
+
+      const fragmentSource = `
+        precision mediump float;
+        varying vec2 vUv;
+        uniform float uTime;
+        uniform vec2 uResolution;
+
+        float circle(vec2 uv, vec2 p, float r) {
+          return smoothstep(r, r - 0.42, length(uv - p));
+        }
+
+        void main() {
+          vec2 uv = vUv;
+          vec2 aspect = vec2(uResolution.x / uResolution.y, 1.0);
+          vec2 q = (uv - 0.5) * aspect;
+
+          float beat = min(uTime / 8.0, 1.0);
+          vec2 p1 = vec2(-0.36 + 0.06 * sin(uTime * 0.55), 0.25 + 0.04 * cos(uTime * 0.42));
+          vec2 p2 = vec2(0.42 + 0.05 * cos(uTime * 0.36), -0.03 + 0.07 * sin(uTime * 0.48));
+          vec2 p3 = vec2(0.02 + 0.08 * sin(uTime * 0.28), -0.42 + 0.05 * cos(uTime * 0.44));
+
+          float a = circle(q, p1, 0.36 + 0.04 * sin(uTime * 0.6));
+          float b = circle(q, p2, 0.42 + 0.03 * cos(uTime * 0.5));
+          float c = circle(q, p3, 0.30 + 0.04 * sin(uTime * 0.7));
+
+          vec3 color = vec3(0.0);
+          color += a * vec3(1.0, 0.52, 0.70);
+          color += b * vec3(0.88, 0.40, 0.57);
+          color += c * vec3(1.0, 0.70, 0.80);
+
+          float vignette = smoothstep(0.86, 0.14, length(uv - 0.5));
+          float alpha = (a + b + c) * 0.24 * vignette * beat;
+          gl_FragColor = vec4(color, alpha);
+        }
+      `;
+
+      function shader(type, source) {
+        const s = gl.createShader(type);
+        gl.shaderSource(s, source);
+        gl.compileShader(s);
+        if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+          throw new Error(gl.getShaderInfoLog(s));
+        }
+        return s;
+      }
+
+      let program;
+      try {
+        program = gl.createProgram();
+        gl.attachShader(program, shader(gl.VERTEX_SHADER, vertexSource));
+        gl.attachShader(program, shader(gl.FRAGMENT_SHADER, fragmentSource));
+        gl.linkProgram(program);
+        if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(program));
+      } catch (error) {
+        canvas.style.display = 'none';
+        fallback.classList.remove('hidden');
+        return;
+      }
+
+      const buffer = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
+
+      const position = gl.getAttribLocation(program, 'position');
+      const uTime = gl.getUniformLocation(program, 'uTime');
+      const uResolution = gl.getUniformLocation(program, 'uResolution');
+
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.floor(window.innerWidth * dpr);
+        canvas.height = Math.floor(window.innerHeight * dpr);
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        gl.viewport(0, 0, canvas.width, canvas.height);
+      }
+
+      window.addEventListener('resize', resize, { passive: true });
+      resize();
+
+      const start = performance.now();
+      function render(now) {
+        const time = (now - start) * 0.001;
+        gl.clearColor(0, 0, 0, 0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.useProgram(program);
+        gl.enableVertexAttribArray(position);
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+        gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+        gl.uniform1f(uTime, time);
+        gl.uniform2f(uResolution, canvas.width, canvas.height);
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
+        requestAnimationFrame(render);
+      }
+
+      requestAnimationFrame(render);
+    })();
+  </script>
+
+  <script>
+    setTimeout(() => {
+      if (window.gsap && window.ScrollTrigger) {
+        gsap.to('#scroll-progress', {
+          scaleX: 1,
+          ease: 'none',
+          scrollTrigger: {
+            scrub: 0.2,
+            start: 0,
+            end: 'max'
+          }
+        });
+      }
+    }, 100);
+  </script>
+
+  <script>
+    (function () {
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileNav = document.getElementById('mobile-nav');
+      if (menuToggle && mobileNav) {
+        menuToggle.addEventListener('click', () => {
+          const open = mobileNav.classList.toggle('open');
+          mobileNav.classList.toggle('hidden', !open);
+          menuToggle.setAttribute('aria-expanded', String(open));
+        });
+        mobileNav.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            mobileNav.classList.remove('open');
+            mobileNav.classList.add('hidden');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            e.preventDefault();
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      const form = document.getElementById('contact-form');
+      const msg = document.getElementById('contact-msg');
+      if (form && msg) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const data = new FormData(form);
+          const name = (data.get('name') || '').toString().trim();
+          const phone = (data.get('phone') || '').toString().trim();
+          const email = (data.get('email') || '').toString().trim();
+          const message = (data.get('message') || '').toString().trim();
+          const text = [
+            'Hello Medina — I would like to book a consultation.',
+            'Name: ' + name,
+            phone ? 'Phone: ' + phone : '',
+            'Email: ' + email,
+            '',
+            message
+          ].filter(Boolean).join('\n');
+          msg.style.opacity = '1';
+          window.open('https://wa.me/18359458992?text=' + encodeURIComponent(text), '_blank', 'noopener');
+          setTimeout(() => { msg.style.opacity = '0'; }, 4000);
+        });
+      }
+
+      const testimonials = [
+        { quote: "“Medina Grant Writing and Consulting is an outstanding service. Professional, reliable, and truly dedicated to excellence. Their reputation speaks for itself, and anyone looking for expert support would be in great hands with them.”", author: "Aidan Lee · Google" },
+        { quote: "“A beneficial organization for the community, led by a great leader!”", author: "Aiden Alexio · Google" },
+        { quote: "“Great company and very beneficial for anyone looking to acquire their services.”", author: "Ibn Mian Al-Buna · Google" },
+        { quote: "“Navigating without the help of Musa and his expertise was VERY difficult. From the moment we started working together, a huge sense of relief set in. His knowledge is up to date which means less room for potential mistakes.”", author: "Tint & Detail Co. · Google" },
+        { quote: "“Great person to talk to. Has a great charisma and personality. Full of positivity.”", author: "Mashud Zebo · Google" },
+        { quote: "“Great organization/mission led by an even greater man, Musa!!!”", author: "Shihab Zaman · Google" },
+        { quote: "“Medina Grant Writing & Consulting is an invaluable partner for nonprofits and community organizations. They don’t just help you secure funding, they build your confidence and capacity to grow sustainably.”", author: "Shabana Ahmadzai · Google" },
+        { quote: "“They really took the time to understand our nonprofit and helped us strengthen our grant proposals and overall funding strategy. Instead of just doing the work for us, they coached us through it.”", author: "Khalid Kocan · Google" }
+      ];
+      let currentTesti = 0;
+      const quoteEl = document.getElementById('testi-quote');
+      const authorEl = document.getElementById('testi-author');
+      const indicators = document.getElementById('testi-indicators');
+
+      function updateTestimonial(idx) {
+        if (quoteEl && authorEl) {
+          quoteEl.style.opacity = '0';
+          authorEl.style.opacity = '0';
+          setTimeout(() => {
+            quoteEl.textContent = testimonials[idx].quote;
+            authorEl.textContent = testimonials[idx].author;
+            quoteEl.style.opacity = '1';
+            authorEl.style.opacity = '1';
+          }, 300);
+          if (indicators && indicators.children) {
+            Array.from(indicators.children).forEach((ind, i) => {
+              ind.className = i === idx
+                ? 'h-1 w-12 bg-[#1e1b24] transition-colors duration-300 sm:w-16'
+                : 'h-1 w-12 bg-black/10 transition-colors duration-300 sm:w-16';
+            });
+          }
+        }
+      }
+
+      document.getElementById('testi-prev')?.addEventListener('click', () => {
+        currentTesti = (currentTesti - 1 + testimonials.length) % testimonials.length;
+        updateTestimonial(currentTesti);
+      });
+      document.getElementById('testi-next')?.addEventListener('click', () => {
+        currentTesti = (currentTesti + 1) % testimonials.length;
+        updateTestimonial(currentTesti);
+      });
+    })();
+  </script>
+</body>
+</html>
