@@ -4,31 +4,23 @@ Marketing site for **Medina Grant Writing & Consulting**.
 
 ## Next.js site
 
-The production site lives in [`web/`](web/):
-
 ```bash
 cd web
 npm install
 npm run dev
 ```
 
-## Deploy on Cloudflare
+## Deploy on Cloudflare Pages
 
-See [`CLOUDFLARE.md`](CLOUDFLARE.md) for the exact dashboard settings.
+See [`CLOUDFLARE.md`](CLOUDFLARE.md).
 
-**Important:** your Cloudflare build must **not** run `npx @cloudflare/next-on-pages@1`. Change the build command to:
-
-```bash
-npm run cf:build
-```
-
-and the deploy command to:
+Build command:
 
 ```bash
-npx wrangler deploy
+npm run build
 ```
 
-(or set Root directory to `web` and use `npx opennextjs-cloudflare build` / `deploy`).
+Output directory: `web/out`
 
 ## Legacy files
 

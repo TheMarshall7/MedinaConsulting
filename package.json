@@ -2,8 +2,8 @@
   "name": "medina-consulting",
   "private": true,
   "scripts": {
-    "cf:build": "npm ci --prefix web && npm run cf:build --prefix web",
-    "deploy": "npm run deploy --prefix web",
-    "build": "npm run cf:build"
+    "build": "npm ci --prefix web && npm run build --prefix web",
+    "cf:build": "npm run build",
+    "dev": "npm run dev --prefix web"
   }
 }
