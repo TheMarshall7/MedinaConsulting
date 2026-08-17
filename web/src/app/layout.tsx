@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { AuraCanvas } from "@/components/AuraCanvas";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { NetlifyIdentity } from "@/components/NetlifyIdentity";
 import { JsonLd } from "@/components/JsonLd";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
@@ -93,6 +94,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: motionGate }} />
         <JsonLd data={organizationLd} />
         <ScrollProgress />
+        <NetlifyIdentity />
         <AuraCanvas />
         <div
           className="grain pointer-events-none fixed inset-0 z-0 opacity-[0.05]"
