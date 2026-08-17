@@ -1,0 +1,44 @@
+{
+  "reviews": [
+    {
+      "author": "Aidan Lee",
+      "quote": "Medina Grant Writing and Consulting is an outstanding service. Professional, reliable, and truly dedicated to excellence. Their reputation speaks for itself, and anyone looking for expert support would be in great hands with them.",
+      "order": 1
+    },
+    {
+      "author": "Aiden Alexio",
+      "quote": "A beneficial organization for the community, led by a great leader!",
+      "order": 2
+    },
+    {
+      "author": "Ibn Mian Al-Buna",
+      "quote": "Great company and very beneficial for anyone looking to acquire their services.",
+      "order": 3
+    },
+    {
+      "author": "Tint & Detail Co.",
+      "quote": "Navigating without the help of Musa and his expertise was VERY difficult. From the moment we started working together, a huge sense of relief set in. His knowledge is up to date which means less room for potential mistakes.",
+      "order": 4
+    },
+    {
+      "author": "Mashud Zebo",
+      "quote": "Great person to talk to. Has a great charisma and personality. Full of positivity.",
+      "order": 5
+    },
+    {
+      "author": "Shihab Zaman",
+      "quote": "Great organization/mission led by an even greater man, Musa!!!",
+      "order": 6
+    },
+    {
+      "author": "Shabana Ahmadzai",
+      "quote": "Medina Grant Writing & Consulting is an invaluable partner for nonprofits and community organizations. They don’t just help you secure funding, they build your confidence and capacity to grow sustainably.",
+      "order": 7
+    },
+    {
+      "author": "Khalid Kocan",
+      "quote": "They really took the time to understand our nonprofit and helped us strengthen our grant proposals and overall funding strategy. Instead of just doing the work for us, they coached us through it.",
+      "order": 8
+    }
+  ]
+}

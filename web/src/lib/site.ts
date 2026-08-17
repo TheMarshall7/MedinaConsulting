@@ -1,21 +1,22 @@
+import settings from "../../content/settings.json";
+import reviewsFile from "../../content/reviews.json";
+
 export const siteConfig = {
   name: "Medina Grant Writing & Consulting",
   shortName: "Medina",
-  tagline: "Grants done right.",
-  heroLine: "Your trusted fundraising partners.",
-  description:
-    "Grant writing and consulting services for nonprofits and charities across Canada. Secure sustainable funding, strengthen funder relationships, and build lasting impact.",
+  tagline: settings.tagline,
+  heroLine: settings.heroLine,
+  description: settings.description,
   url: "https://medinaconsulting.ca",
-  phone: "(835) 945-8992",
-  phoneHref: "tel:+18359458992",
-  whatsapp:
-    "https://api.whatsapp.com/message/4QXNTYEHYJAAG1?autoload=1&app_absent=0",
-  whatsappNumber: "18359458992",
-  linkedin: "https://www.linkedin.com/company/medinaconsultingca",
-  youtube: "https://www.youtube.com/@medinaconsultingCA",
-  founderVideoId: "2UBnt_6V-LE",
+  phone: settings.phone,
+  phoneHref: settings.phoneHref,
+  whatsapp: settings.whatsapp,
+  whatsappNumber: settings.whatsappNumber,
+  linkedin: settings.linkedin,
+  youtube: settings.youtube,
+  founderVideoId: settings.founderVideoId,
   founded: 2025,
-  location: "Toronto, Canada",
+  location: settings.location,
 } as const;
 
 export const aboutCopy = {
@@ -31,8 +32,7 @@ export const aboutCopy = {
     "Strengthen your internal systems and readiness",
     "Design programs with funder-conscious strategy from the start",
   ],
-  founderNote:
-    "Clients describe Musa as knowledgeable, up to date, and genuinely invested in helping organizations grow — coaching them through the work rather than doing it for them.",
+  founderNote: settings.founderNote,
 } as const;
 
 export const services = [
@@ -47,8 +47,7 @@ export const services = [
   {
     slug: "proposal-review-editing",
     title: "Funding Proposal Review & Editing",
-    summary:
-      "Strengthen applications before they reach the review table.",
+    summary: "Strengthen applications before they reach the review table.",
     image:
       "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1600&q=80",
   },
@@ -147,51 +146,13 @@ export const faqs = [
   },
 ] as const;
 
-export const reviews = [
-  {
-    quote:
-      "Medina Grant Writing and Consulting is an outstanding service. Professional, reliable, and truly dedicated to excellence. Their reputation speaks for itself, and anyone looking for expert support would be in great hands with them.",
-    author: "Aidan Lee",
-  },
-  {
-    quote: "A beneficial organization for the community, led by a great leader!",
-    author: "Aiden Alexio",
-  },
-  {
-    quote:
-      "Great company and very beneficial for anyone looking to acquire their services.",
-    author: "Ibn Mian Al-Buna",
-  },
-  {
-    quote:
-      "Navigating without the help of Musa and his expertise was VERY difficult. From the moment we started working together, a huge sense of relief set in. His knowledge is up to date which means less room for potential mistakes.",
-    author: "Tint & Detail Co.",
-  },
-  {
-    quote:
-      "Great person to talk to. Has a great charisma and personality. Full of positivity.",
-    author: "Mashud Zebo",
-  },
-  {
-    quote:
-      "Great organization/mission led by an even greater man, Musa!!!",
-    author: "Shihab Zaman",
-  },
-  {
-    quote:
-      "Medina Grant Writing & Consulting is an invaluable partner for nonprofits and community organizations. They don’t just help you secure funding, they build your confidence and capacity to grow sustainably.",
-    author: "Shabana Ahmadzai",
-  },
-  {
-    quote:
-      "They really took the time to understand our nonprofit and helped us strengthen our grant proposals and overall funding strategy. Instead of just doing the work for us, they coached us through it.",
-    author: "Khalid Kocan",
-  },
-] as const;
+export const reviews = [...reviewsFile.reviews].sort(
+  (a, b) => (a.order ?? 99) - (b.order ?? 99),
+);
 
 export const stats = [
   {
-    value: 155484,
+    value: settings.fundsSecured,
     prefix: "$",
     label: "Funds secured for clients",
   },
@@ -209,7 +170,7 @@ export const stats = [
 ] as const;
 
 export const fundsSecured = {
-  value: 155484,
+  value: settings.fundsSecured,
   prefix: "$",
   label: "funds secured",
 } as const;
@@ -235,6 +196,7 @@ export const navLinks = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
   { href: "/about", label: "About" },
+  { href: "/blog", label: "Blog" },
   { href: "/faq", label: "FAQs" },
   { href: "/contact", label: "Contact" },
 ] as const;

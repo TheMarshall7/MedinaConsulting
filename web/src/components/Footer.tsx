@@ -11,6 +11,7 @@ import { siteConfig } from "@/lib/site";
 const explore = [
   { href: "/services", label: "Services" },
   { href: "/about", label: "About" },
+  { href: "/blog", label: "Blog" },
   { href: "/faq", label: "FAQs" },
   { href: "/contact", label: "Contact" },
 ];

@@ -1,0 +1,95 @@
+backend:
+  name: github
+  repo: TheMarshall7/MedinaConsulting
+  branch: main
+
+# Local editing with `npx decap-server` + `npm run dev` → http://localhost:3000/admin
+local_backend: true
+
+media_folder: web/public/uploads
+public_folder: /uploads
+
+site_url: https://medinaconsulting.ca
+display_url: https://medinaconsulting.ca
+logo_url: /Medina.png
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  - name: settings
+    label: Site settings
+    files:
+      - name: site
+        label: Hero & contact
+        file: web/content/settings.json
+        fields:
+          - { label: Tagline, name: tagline, widget: string }
+          - { label: Hero line, name: heroLine, widget: string }
+          - { label: Site description, name: description, widget: text }
+          - { label: Phone display, name: phone, widget: string }
+          - { label: Phone tel link, name: phoneHref, widget: string }
+          - { label: WhatsApp URL, name: whatsapp, widget: string }
+          - { label: WhatsApp number, name: whatsappNumber, widget: string }
+          - { label: LinkedIn URL, name: linkedin, widget: string }
+          - { label: YouTube URL, name: youtube, widget: string }
+          - { label: Founder YouTube video ID, name: founderVideoId, widget: string }
+          - { label: Location, name: location, widget: string }
+          - { label: Founder note, name: founderNote, widget: text }
+          - { label: Funds secured (number), name: fundsSecured, widget: number, value_type: int }
+
+  - name: reviews
+    label: Reviews
+    files:
+      - name: reviews
+        label: Google reviews
+        file: web/content/reviews.json
+        fields:
+          - label: Reviews
+            name: reviews
+            widget: list
+            summary: "{{fields.author}}"
+            fields:
+              - { label: Author, name: author, widget: string }
+              - { label: Quote, name: quote, widget: text }
+              - {
+                  label: Order,
+                  name: order,
+                  widget: number,
+                  value_type: int,
+                  default: 1,
+                }
+
+  - name: blog
+    label: Blog
+    label_singular: Post
+    folder: web/content/blog
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Publish date, name: date, widget: datetime }
+      - {
+          label: Summary,
+          name: summary,
+          widget: text,
+          hint: Short blurb for cards and SEO,
+        }
+      - {
+          label: Cover image,
+          name: cover,
+          widget: image,
+          required: false,
+        }
+      - { label: Body, name: body, widget: markdown }
+      - {
+          label: Published,
+          name: published,
+          widget: boolean,
+          default: true,
+        }
