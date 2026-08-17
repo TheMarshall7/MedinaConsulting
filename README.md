@@ -10,6 +10,13 @@ npm install
 npm run dev
 ```
 
+## Deploy on Netlify
+
+The live site is [medinaconsulting.netlify.app](https://medinaconsulting.netlify.app/). Build settings live in `netlify.toml`:
+
+- Build command: `npm run build`
+- Publish directory: `web/out`
+
 ## Deploy on Cloudflare Pages
 
 See [`CLOUDFLARE.md`](CLOUDFLARE.md).
@@ -24,7 +31,7 @@ Output directory: `web/out`
 
 ## Content CMS (Decap)
 
-See [`CMS.md`](CMS.md).
+See [`CMS.md`](CMS.md) for email/password login (client does not need GitHub).
 
 - Admin: `/admin`
 - Local: `cd web && npm run cms` (with `npm run dev` running)

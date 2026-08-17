@@ -1,9 +1,12 @@
+# Email + password login via Netlify Identity. The client never needs GitHub.
+# After creating the free Netlify site, replace the hostname below.
 backend:
-  name: github
-  repo: TheMarshall7/MedinaConsulting
+  name: git-gateway
   branch: main
+  identity_url: https://medinaconsulting.netlify.app/.netlify/identity
+  gateway_url: https://medinaconsulting.netlify.app/.netlify/git
 
-# Local editing with `npx decap-server` + `npm run dev` → http://localhost:3000/admin
+# Local editing: `npm run cms` + `npm run dev` → http://localhost:3000/admin
 local_backend: true
 
 media_folder: web/public/uploads

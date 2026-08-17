@@ -1,70 +1,50 @@
-# Decap CMS
+# Decap CMS — email + password (no GitHub for the client)
 
-[Decap CMS](https://github.com/decaporg/decap-cms) is available at **`/admin`**.
+The editor lives at **`/admin`**.
 
-Editors can manage:
+They can change reviews, blog posts, some site copy, and upload images. Saves go to Git automatically. They never need a GitHub account.
 
-- **Reviews** — homepage carousel quotes
-- **Blog** — posts under `/blog`
-- **Site settings** — hero/contact copy and funds secured number
-- **Uploads** — images saved to `web/public/uploads`
+## One-time setup (you)
 
-## Local editing (recommended to start)
+Git Gateway needs a free [Netlify](https://www.netlify.com/) site for login. The marketing site can stay on Cloudflare or Vercel.
 
-1. In one terminal:
+1. [Add a new Netlify site](https://app.netlify.com/) from GitHub repo `TheMarshall7/MedinaConsulting`.
+2. Confirm build settings (or rely on `netlify.toml` in the repo):
+   - Build command: `npm run build`
+   - Publish directory: `web/out`
+   - Branch: `main`
+3. **Site configuration → Access control → Site protection** must be **off / public**. Identity is only for `/admin`, not the whole site.
+4. **Site configuration → Identity → Enable Identity**.
+5. Identity → **Registration** → **Invite only** (so random people cannot sign up).
+6. Identity → **Services → Git Gateway → Enable**. Connect the GitHub repo when asked.
+7. Commit, push, and wait for the live site to rebuild.
+8. Netlify → Identity → **Invite users** → enter the client’s email.
+9. They get an email, set a password, then go to `https://medinaconsulting.netlify.app/admin` and log in.
+
+You can also set their password yourself from the Identity dashboard after they accept the invite.
+
+## Local editing (you)
 
 ```bash
 cd web
 npm run dev
 ```
 
-2. In another:
-
 ```bash
 cd web
 npm run cms
 ```
 
-3. Open [http://localhost:3000/admin](http://localhost:3000/admin)
+Open [http://localhost:3000/admin](http://localhost:3000/admin). No Netlify login required locally.
 
-With `local_backend: true`, Decap writes straight to your local `content/` and `public/uploads/` folders. Commit and push when ready.
+## After they publish
 
-## Production login (GitHub)
-
-The CMS uses the **GitHub** backend against `TheMarshall7/MedinaConsulting`.
-
-Anyone who logs in needs **write access** to that repo.
-
-### Option A — Netlify Identity proxy (simple)
-
-Even if the site is hosted on Cloudflare/Vercel, you can use Netlify’s auth proxy:
-
-1. Create a free site on [Netlify](https://www.netlify.com/) connected to the same GitHub repo (or a blank site).
-2. Enable **Identity** and the **GitHub** authentication provider (see [Decap GitHub backend](https://decapcms.org/docs/github-backend/)).
-3. In `web/public/admin/config.yml`, add under `backend`:
-
-```yaml
-base_url: https://api.netlify.com
-auth_endpoint: auth
-site_domain: YOUR-NETLIFY-SITE.netlify.app
-```
-
-### Option B — Your own GitHub OAuth app
-
-1. Create a GitHub OAuth App (Homepage URL = your live site, callback = your OAuth proxy callback URL).
-2. Deploy an OAuth proxy (for example [netlify-cms-github-oauth-provider](https://github.com/vencax/netlify-cms-github-oauth-provider)).
-3. Point `backend.base_url` / `auth_endpoint` at that proxy.
-
-Until production auth is configured, use **local editing** above.
-
-## After publishing
-
-CMS commits update files in Git. Your host rebuilds the static site so new reviews/posts go live.
+Each save is a Git commit. Your host rebuilds, and the new review/post goes live.
 
 ## URLs
 
 | Path | Purpose |
 | --- | --- |
-| `/admin/` | CMS UI |
+| `/admin/` | CMS login + editor |
 | `/blog` | Blog index |
 | `/blog/[slug]` | Blog post |
