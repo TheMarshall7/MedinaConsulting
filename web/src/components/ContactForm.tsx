@@ -37,7 +37,7 @@ export function ContactForm() {
   }
 
   const field =
-    "mt-2 w-full rounded-xl border border-hairline bg-paper/60 px-4 py-3.5 text-sm font-light text-ink outline-none transition focus:border-pink focus:ring-1 focus:ring-pink";
+    "mt-2 w-full rounded-xl border border-hairline bg-surface/80 px-4 py-3.5 text-sm font-light text-ink outline-none transition focus:border-pink focus:ring-1 focus:ring-pink";
 
   return (
     <form onSubmit={onSubmit} className="space-y-5">

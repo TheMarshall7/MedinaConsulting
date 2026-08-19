@@ -1,11 +1,12 @@
 import Link from "next/link";
-import Image from "next/image";
+import { BrandMark } from "@/components/BrandMark";
 import { ArrowUpRight } from "lucide-react";
 import {
   LinkedInIcon,
   WhatsAppIcon,
   YouTubeIcon,
 } from "@/components/SocialIcons";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { siteConfig } from "@/lib/site";
 
 const explore = [
@@ -45,8 +46,8 @@ export function Footer() {
               aria-label={`${siteConfig.shortName} home`}
               className="inline-flex transition-opacity duration-300 hover:opacity-80"
             >
-              <Image
-                src="/Medina-Logo.png"
+              <BrandMark
+                variant="lockup"
                 alt={siteConfig.name}
                 width={260}
                 height={86}
@@ -115,10 +116,11 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-3 border-t border-hairline pt-7 text-xs font-light text-ink/45 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-5 border-t border-hairline pt-7 text-xs font-light text-ink/45 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
+          <ThemeToggle />
           <p className="tracking-[0.2em] uppercase">{siteConfig.tagline}</p>
         </div>
       </div>

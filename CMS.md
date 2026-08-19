@@ -1,6 +1,6 @@
 # Decap CMS — email + password (no GitHub for the client)
 
-The editor lives at **`/admin`**.
+The editor lives at **`/admin`** and is branded **AreoClient** for the client. Under the hood it is [Decap CMS](https://decapcms.org/).
 
 They can change reviews, blog posts, some site copy, and upload images. Saves go to Git automatically. They never need a GitHub account.
 

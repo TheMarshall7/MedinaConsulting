@@ -38,6 +38,22 @@ export function getBlogPosts(): BlogPost[] {
     .sort((a, b) => +new Date(b.date) - +new Date(a.date));
 }
 
+export function formatPostDate(value: string) {
+  const date = new Date(value);
+  if (Number.isNaN(+date)) return value;
+  return date.toLocaleDateString("en-CA", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+export function readingTime(body: string) {
+  const words = body.trim().split(/\s+/).filter(Boolean).length;
+  const minutes = Math.max(1, Math.round(words / 200));
+  return `${minutes} min read`;
+}
+
 export function getBlogPost(slug: string): BlogPost | null {
   return getBlogPosts().find((post) => post.slug === slug) ?? null;
 }

@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
+import { BrandMark } from "@/components/BrandMark";
 import { navLinks, siteConfig } from "@/lib/site";
 
 export function Header() {
@@ -45,8 +45,8 @@ export function Header() {
           className="inline-flex items-center transition-opacity duration-300 hover:opacity-80"
           onClick={() => setOpen(false)}
         >
-          <Image
-            src="/Medina.png"
+          <BrandMark
+            variant="wordmark"
             alt="medina"
             width={200}
             height={50}

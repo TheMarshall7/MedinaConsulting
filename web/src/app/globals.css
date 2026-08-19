@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+/* Light (default): paper field, ink type, brand-pink accents.
+   Dark: brand pink field, dark wine type and accents. */
 @theme {
   --color-paper: #f8f6f4;
   --color-paper-soft: #f1ede9;
@@ -8,8 +10,20 @@
   --color-pink: #ff85b2;
   --color-pink-deep: #e0669a;
   --color-hairline: rgba(19, 16, 23, 0.1);
+  --color-surface: #ffffff;
 
   --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+}
+
+html[data-theme="dark"] {
+  --color-paper: #ff85b2;
+  --color-paper-soft: #f0679d;
+  --color-ink: #1a0810;
+  --color-ink-soft: #2c101c;
+  --color-pink: #3d0a1c;
+  --color-pink-deep: #240612;
+  --color-hairline: rgba(26, 8, 16, 0.18);
+  --color-surface: #fff6f9;
 }
 
 @layer base {
@@ -18,12 +32,20 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     scrollbar-width: thin;
-    scrollbar-color: rgba(224, 102, 154, 0.45) transparent;
+    scrollbar-color: color-mix(in srgb, var(--color-pink) 55%, transparent)
+      transparent;
   }
 
+  html,
   body {
     background-color: var(--color-paper);
     color: var(--color-ink);
+    transition:
+      background-color 0.45s ease,
+      color 0.45s ease;
+  }
+
+  body {
     font-family: var(--font-sans);
   }
 
@@ -55,8 +77,8 @@
   *::-webkit-scrollbar-thumb {
     background: linear-gradient(
       180deg,
-      rgba(255, 133, 178, 0.35),
-      rgba(224, 102, 154, 0.55)
+      color-mix(in srgb, var(--color-pink) 40%, transparent),
+      color-mix(in srgb, var(--color-pink-deep) 65%, transparent)
     );
     border: 3px solid transparent;
     background-clip: padding-box;
@@ -66,8 +88,8 @@
   *::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(
       180deg,
-      rgba(255, 133, 178, 0.55),
-      rgba(224, 102, 154, 0.75)
+      color-mix(in srgb, var(--color-pink) 60%, transparent),
+      color-mix(in srgb, var(--color-pink-deep) 80%, transparent)
     );
     border: 3px solid transparent;
     background-clip: padding-box;
@@ -132,6 +154,9 @@
     color: #fff;
     position: relative;
     overflow: hidden;
+    /* Keep brand pink readable on the dark stripe in both modes. */
+    --color-pink: #ff85b2;
+    --color-pink-deep: #ffc2d6;
   }
 
   .ink-section::before {
@@ -149,8 +174,16 @@
     position: relative;
   }
 
+  .on-ink {
+    --color-pink: #ff85b2;
+    --color-pink-deep: #ffc2d6;
+  }
+
   .grain {
-    background-image: radial-gradient(rgba(19, 16, 23, 0.16) 0.5px, transparent 0.5px);
+    background-image: radial-gradient(
+      color-mix(in srgb, var(--color-ink) 16%, transparent) 0.5px,
+      transparent 0.5px
+    );
     background-size: 0.1875rem 0.1875rem;
   }
 
@@ -176,24 +209,24 @@
   .btn-primary {
     background: linear-gradient(100deg, var(--color-pink), var(--color-pink-deep));
     color: #fff;
-    box-shadow: 0 1rem 2.5rem rgba(224, 102, 154, 0.28);
+    box-shadow: 0 1rem 2.5rem color-mix(in srgb, var(--color-pink) 28%, transparent);
   }
 
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 1.5rem 3rem rgba(224, 102, 154, 0.36);
+    box-shadow: 0 1.5rem 3rem color-mix(in srgb, var(--color-pink) 36%, transparent);
   }
 
   .btn-primary-soft {
-    background: rgba(255, 133, 178, 0.14);
+    background: color-mix(in srgb, var(--color-pink) 14%, transparent);
     color: var(--color-pink-deep);
     box-shadow: none;
-    border: 1px solid rgba(255, 133, 178, 0.28);
+    border: 1px solid color-mix(in srgb, var(--color-pink) 28%, transparent);
   }
 
   .btn-primary-soft:hover {
     transform: translateY(-2px);
-    background: rgba(255, 133, 178, 0.22);
+    background: color-mix(in srgb, var(--color-pink) 22%, transparent);
     color: var(--color-pink-deep);
   }
 
@@ -208,7 +241,7 @@
   }
 
   .btn-light {
-    background: #fff;
+    background: var(--color-surface);
     color: var(--color-ink);
   }
 
@@ -223,7 +256,7 @@
 
   .btn-ghost:hover {
     transform: translateY(-2px);
-    background: rgba(19, 16, 23, 0.04);
+    background: color-mix(in srgb, var(--color-ink) 4%, transparent);
   }
 
   /* Animated nav underline */
@@ -260,18 +293,28 @@
   }
 
   .prose-medina {
-    color: rgba(19, 16, 23, 0.7);
-    font-size: 1.0625rem;
+    color: color-mix(in srgb, var(--color-ink) 70%, transparent);
+    font-size: 1.125rem;
     font-weight: 300;
-    line-height: 1.8;
+    line-height: 1.85;
+  }
+
+  .prose-medina > p:first-of-type::first-letter {
+    float: left;
+    margin-right: 0.12em;
+    color: var(--color-ink);
+    font-size: 3.35em;
+    font-weight: 500;
+    line-height: 0.82;
+    letter-spacing: -0.04em;
   }
 
   .prose-medina > * + * {
-    margin-top: 1.25rem;
+    margin-top: 1.35rem;
   }
 
   .prose-medina h2 {
-    margin-top: 2.5rem;
+    margin-top: 2.75rem;
     color: var(--color-ink);
     font-size: clamp(1.5rem, 2.4vw, 2rem);
     font-weight: 500;
@@ -298,13 +341,33 @@
     padding-left: 1.25rem;
   }
 
+  .prose-medina li::marker {
+    color: var(--color-pink);
+  }
+
   .prose-medina li + li {
-    margin-top: 0.5rem;
+    margin-top: 0.55rem;
   }
 
   .prose-medina strong {
     color: var(--color-ink);
     font-weight: 500;
+  }
+
+  .prose-medina blockquote {
+    border-left: 1px solid var(--color-pink);
+    padding-left: 1.25rem;
+    color: var(--color-ink);
+    font-size: 1.25rem;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.5;
+  }
+
+  .prose-medina hr {
+    margin: 2.5rem 0;
+    border: 0;
+    border-top: 1px solid var(--color-hairline);
   }
 }
 
@@ -315,6 +378,22 @@
 
   .text-pretty {
     text-wrap: pretty;
+  }
+
+  [data-theme="dark"] .aura-canvas {
+    opacity: 0.22;
+  }
+
+  html[data-theme="dark"] .grain {
+    opacity: 0.08;
+  }
+
+  html[data-theme="dark"] .logo-light {
+    display: none;
+  }
+
+  html:not([data-theme="dark"]) .logo-dark {
+    display: none;
   }
 }
 

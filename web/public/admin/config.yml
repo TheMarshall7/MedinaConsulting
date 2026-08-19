@@ -15,6 +15,9 @@ public_folder: /uploads
 site_url: https://medinaconsulting.ca
 display_url: https://medinaconsulting.ca
 logo_url: /Medina.png
+logo:
+  src: /Medina.png
+  show_in_header: true
 
 slug:
   encoding: ascii

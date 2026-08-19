@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
-    <title>Content | Medina Consulting</title>
+    <title>AreoClient</title>
     <link rel="preconnect" href="https://unpkg.com" />
     <style>
       body {
@@ -12,12 +12,39 @@
         font-family: system-ui, sans-serif;
         background: #f8f6f4;
       }
+
+      a[href*="decapcms.org"] {
+        font-size: 0 !important;
+        color: transparent !important;
+      }
+
+      a[href*="decapcms.org"]::after {
+        content: "AreoClient";
+        color: inherit;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .areo-brand {
+        display: inline-flex;
+        align-items: center;
+        margin-left: 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #131017;
+      }
     </style>
   </head>
   <body>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
+      document.title = "AreoClient";
+
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", function (user) {
           if (!user) {
@@ -27,6 +54,19 @@
           }
         });
       }
+
+      function applyAreoBrand() {
+        var header =
+          document.querySelector("header") ||
+          document.querySelector('[class*="AppHeader"]');
+        if (!header || header.querySelector(".areo-brand")) return;
+        var label = document.createElement("span");
+        label.className = "areo-brand";
+        label.textContent = "AreoClient";
+        header.appendChild(label);
+      }
+
+      setInterval(applyAreoBrand, 400);
     </script>
   </body>
 </html>

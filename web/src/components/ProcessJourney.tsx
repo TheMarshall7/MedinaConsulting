@@ -237,7 +237,7 @@ function ScenePanel({
 }) {
   return (
     <div
-      className={`relative h-full min-h-[22rem] overflow-hidden bg-paper-soft lg:min-h-0 ${
+      className={`on-ink relative h-full min-h-[22rem] overflow-hidden bg-paper-soft lg:min-h-0 ${
         featured ? "clip-accent" : "rounded-[1.25rem]"
       }`}
     >

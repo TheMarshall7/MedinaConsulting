@@ -76,8 +76,8 @@ const organizationLd = {
   },
 };
 
-// Runs before paint so revealed content never flashes in and then hides.
-const motionGate = `try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('motion-ready')}}catch(e){}`;
+// Runs before paint so theme + motion never flash the wrong state.
+const boot = `try{var t=localStorage.getItem('medina-theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('motion-ready')}}catch(e){document.documentElement.setAttribute('data-theme','light')}`;
 
 export default function RootLayout({
   children,
@@ -87,11 +87,12 @@ export default function RootLayout({
   return (
     <html
       lang="en-CA"
+      data-theme="light"
       className={`${poppins.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="relative min-h-full overflow-x-hidden bg-paper text-ink">
-        <script dangerouslySetInnerHTML={{ __html: motionGate }} />
+        <script dangerouslySetInnerHTML={{ __html: boot }} />
         <JsonLd data={organizationLd} />
         <ScrollProgress />
         <NetlifyIdentity />

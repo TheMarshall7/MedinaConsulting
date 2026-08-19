@@ -44,7 +44,7 @@ export default function ServicesPage() {
           <Reveal
             key={service.slug}
             delay={(i % 2) * 0.08}
-            className={`group overflow-hidden rounded-2xl border border-hairline bg-white/70 backdrop-blur-sm transition duration-500 hover:-translate-y-1 hover:shadow-[0_2rem_5rem_rgba(19,16,23,0.1)] ${
+            className={`group overflow-hidden rounded-2xl border border-hairline bg-surface/70 backdrop-blur-sm transition duration-500 hover:-translate-y-1 hover:shadow-[0_2rem_5rem_rgba(19,16,23,0.1)] ${
               i === 0 ? "clip-accent" : ""
             }`}
           >
@@ -79,7 +79,7 @@ export default function ServicesPage() {
           {secondary.map((service, i) => (
             <div
               key={service.slug}
-              className="group grid grid-cols-[auto_1fr] items-baseline gap-6 border-b border-hairline py-8 transition-colors duration-300 hover:bg-white/50 sm:grid-cols-[4rem_1fr_1.1fr] sm:gap-10"
+              className="group grid grid-cols-[auto_1fr] items-baseline gap-6 border-b border-hairline py-8 transition-colors duration-300 hover:bg-surface/50 sm:grid-cols-[4rem_1fr_1.1fr] sm:gap-10"
             >
               <span className="text-[0.6875rem] tracking-[0.2em] text-ink/30">
                 0{featured.length + i + 1}

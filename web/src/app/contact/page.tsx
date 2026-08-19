@@ -96,7 +96,7 @@ export default function ContactPage() {
           </Reveal>
         </div>
 
-        <Reveal className="rounded-2xl border border-hairline bg-white/70 p-8 backdrop-blur-sm sm:p-10">
+        <Reveal className="rounded-2xl border border-hairline bg-surface/70 p-8 backdrop-blur-sm sm:p-10">
           <ContactForm />
         </Reveal>
       </div>

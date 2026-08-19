@@ -153,12 +153,12 @@ export function AuraCanvas() {
       <canvas
         ref={canvasRef}
         aria-hidden
-        className="pointer-events-none fixed inset-0 z-0 h-full w-full opacity-70"
+        className="aura-canvas pointer-events-none fixed inset-0 z-0 h-full w-full opacity-70"
       />
       <div
         ref={fallbackRef}
         aria-hidden
-        className="pointer-events-none fixed inset-0 z-0 hidden"
+        className="aura-canvas pointer-events-none fixed inset-0 z-0 hidden"
         style={{
           background:
             "radial-gradient(38rem 24rem at 15% 5%, rgba(255,133,178,0.14), transparent 70%), radial-gradient(34rem 22rem at 88% 40%, rgba(255,178,205,0.1), transparent 70%)",
